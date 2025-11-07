@@ -1,0 +1,46 @@
+rules:
+  - endpoint: "/list"
+
+    # Regular expressions that forbid specific user agents.
+    forbidden_user_agents:
+      - 'python-requests.*'
+
+    # Regular expressions that forbid specific header values.
+    forbidden_headers:
+      - 'Content-Type: text/html'
+
+    # required_headers:
+    #   - "Content-Type"
+    #   - "Content-Length"
+
+    max_request_length_bytes: 20
+    max_response_length_bytes: 50
+
+    forbidden_response_codes: [201]
+
+  - endpoint: "/login"
+    # max_response_length_bytes: 20
+
+    forbidden_response_codes: [200]
+
+    required_headers:
+      - "Content-Type"
+      - "Content-Length"
+
+    forbidden_headers:
+      # - 'Content-Type: text/html'
+      - 'Content-Length: 0'
+    # max_request_length_bytes: 10
+
+    forbidden_user_agents:
+      - 'Mozilla.*'
+
+    # Regular expressions that ban specific requests.
+    forbidden_request_re:
+      - '.*(\.\./){3,}.*'
+    # forbidden_request_re:
+    #   - '.*Test.*'
+
+    # Regular expressions that ban specific responses.
+    # forbidden_response_re:
+    #   - '.*admin.*'
